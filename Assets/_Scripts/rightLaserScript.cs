@@ -2,35 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class laserScript : MonoBehaviour {
+public class rightLaserScript : MonoBehaviour {
 
-	public LineRenderer laserRend;
-	public Transform 	laserSpawn;
+	public LineRenderer laserRend2;
+	public Transform 	laserSpawn2;
 
 	//public float 		damage;
 	public float 		fireRate = 4.0f;
 
 	private float		firingDelay = 0f;
 	private float 		laserToggleTime = 0.15f;
-	private bool 		canShoot = false;
 
 	void Start () {
-		laserRend = GetComponent<LineRenderer> ();
-		laserRend.enabled = false;
+		laserRend2 = GetComponent<LineRenderer> ();
+		laserRend2.enabled = false;
 	}
 
 	public void Shoot(){
 		if (VRTargetingScript.hitPos != null) {
 			Debug.Log ("laserFiring");
-			laserRend.SetPosition (0, laserSpawn.position);
-			laserRend.SetPosition (1, VRTargetingScript.hitPos);
+			laserRend2.SetPosition (0, laserSpawn2.position);
+			laserRend2.SetPosition (1, VRTargetingScript.hitPos);
 
-			laserRend.enabled = true;
+			laserRend2.enabled = true;
 			//Invoke ("LaserToggle", 0.15f);
 			StartCoroutine (LaserToggle ());
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (VRTargetingScript.canFire && Time.time >= firingDelay) {
@@ -42,12 +41,12 @@ public class laserScript : MonoBehaviour {
 
 	IEnumerator LaserToggle(){
 		yield return new WaitForSeconds (laserToggleTime);
-		laserRend.enabled = false;
-	
+		laserRend2.enabled = false;
+
 	}
 
 	/*void LaserToggle(){
-		laserRend.enabled = false;
+		laserRend2.enabled = false;
 	}*/
-	
+
 }

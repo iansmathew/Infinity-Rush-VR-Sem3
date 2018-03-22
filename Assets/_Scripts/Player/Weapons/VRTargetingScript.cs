@@ -5,42 +5,49 @@ using UnityEngine;
 //Simple script to return the hit position of the GVR reticle in a vector3
 //currently changing colors of objects when gazed at as well.
 
-public class VRTargetingScript : MonoBehaviour {
+public class VRTargetingScript : MonoBehaviour
+{
 
-	private Vector3 hitPos;
-	private bool canFire = false;
+   // [SerializeField] public Material mat1;
+   // [SerializeField] public Material mat2;
 
-    //Public Getters
-    public Vector3 GetHitPos
+    public static Vector3 hitPos;
+    public static bool canFire = false;
+
+    /*public bool canShoot {
+		get{ return canShoot;}
+		set{ canShoot = canFire;}
+	}*/
+
+    void Start()
     {
-        get { return hitPos; }
+        //GetComponent<Renderer>().material = mat1;
     }
-    public bool GetCanShoot
+
+    public void Targeting()
     {
-        get { return canFire; }
-        set { canFire = value; }
+        //GetComponent<Renderer>().material = mat2;
+
     }
 
-    //Instance property
-    public static VRTargetingScript Instance { get; private set; }
+    public void notTargeting()
+    {
+        //GetComponent<Renderer>().material = mat1;
+    }
 
-    /* -- MEMBER FUNCTIONS --*/
+    public void Fire()
+    {
+        canFire = true;
+        GameObject objectHit = GvrPointerInputModule.CurrentRaycastResult.gameObject;
+        hitPos = objectHit.transform.position;
 
-    void Start () {
-        if (Instance != null)
+        if (objectHit.tag == "Enemy")
         {
-            Destroy(gameObject); //ensuring that only one instance is active
-            return; //redundant?
+            objectHit.GetComponent<EnemyMove>().TakeHit(50);
         }
-        else
+        else if (objectHit.tag == "Asteroid")
         {
-            Instance = this;
+            //TODO: Call asteroid hit
         }
-	}
-
-	public void Fire(){
-		canFire = true;
-		hitPos = GvrPointerInputModule.CurrentRaycastResult.gameObject.transform.position;
-        //TODO: Colin - Call enemy function
-	}
+    }
 }

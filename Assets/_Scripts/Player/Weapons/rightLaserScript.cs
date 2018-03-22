@@ -19,10 +19,10 @@ public class rightLaserScript : MonoBehaviour {
 	}
 
 	public void Shoot(){
-		if (VRTargetingScript.hitPos != null) {
-			Debug.Log ("laserFiring");
+		if (VRTargetingScript.Instance.GetHitPos != null) {
+			//Debug.Log ("laserFiring");
 			laserRend2.SetPosition (0, laserSpawn2.position);
-			laserRend2.SetPosition (1, VRTargetingScript.hitPos);
+			laserRend2.SetPosition (1, VRTargetingScript.Instance.GetHitPos);
 
 			laserRend2.enabled = true;
 			//Invoke ("LaserToggle", 0.15f);
@@ -32,10 +32,10 @@ public class rightLaserScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (VRTargetingScript.canFire && Time.time >= firingDelay) {
+		if (VRTargetingScript.Instance.GetCanShoot && Time.time >= firingDelay) {
 			firingDelay = Time.time + 2.0f / fireRate;
 			Shoot ();
-			VRTargetingScript.canFire = false;
+			VRTargetingScript.Instance.GetCanShoot = false;
 		}
 	}
 

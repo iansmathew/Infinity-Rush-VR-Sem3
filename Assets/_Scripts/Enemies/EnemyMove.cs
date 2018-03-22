@@ -16,6 +16,7 @@ public class EnemyMove : MonoBehaviour {
         health -= damage;
         if(health <= 0)
         {
+            HUDScript.Instance.UpdateScore(10);
             Destroy(gameObject);
             //TODO: Ian - Increment Score/Fuel
         }
@@ -49,8 +50,8 @@ public class EnemyMove : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z - (distShift));
         if (transform.position.z <= -10)
         {
+            HUDScript.Instance.UpdatePlayerHealth(10); //Player takes damage; 
             Destroy(gameObject);
-            //Player takes damage; 
         }
 
 	}

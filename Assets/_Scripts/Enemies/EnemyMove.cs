@@ -10,20 +10,22 @@ public class EnemyMove : MonoBehaviour {
     public int health = 100;
     public GameObject shipTarget;
     public Transform target;
-    public void TakeHit(int damage)
-    {
-        //TODO: Mattthew - Spawn destroyed particles
-        health -= damage;
-        if(health <= 0)
-        {
-            HUDScript.Instance.UpdateScore(10);
-            Destroy(gameObject);
-            //TODO: Ian - Increment Score/Fuel
-        }
-    }
 
-	// Use this for initialization
-	void Start () {
+    [Header("Audio Components")]
+    [SerializeField]
+    private AudioClip onHitClip;
+    [SerializeField]
+    private AudioClip onDestroyClip;
+    [SerializeField]
+    private AudioClip onPlayerHitClip;
+    private AudioSource audioSource;
+
+
+    // Use this for initialization
+    void Start () {
+
+        audioSource = GameObject.Find("EnemySpawnManager").GetComponent<AudioSource>();
+
         int i = Mathf.RoundToInt(Random.value * 3);
 
         if (i == 0)
@@ -50,9 +52,30 @@ public class EnemyMove : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z - (distShift));
         if (transform.position.z <= -10)
         {
+            //Play player hit sound
+            audioSource.PlayOneShot(onPlayerHitClip);
+
             HUDScript.Instance.UpdatePlayerHealth(10); //Player takes damage; 
             Destroy(gameObject);
         }
 
 	}
+
+    public void TakeHit(int damage)
+    {
+        //Play hit sound
+        //audioSource.PlayOneShot(onHitClip);
+
+        //TODO: Mattthew - Spawn destroyed particles
+        health -= damage;
+        if(health <= 0)
+        {
+            //Play destroy sound
+            audioSource.PlayOneShot(onDestroyClip);
+
+            HUDScript.Instance.UpdateScore(10);
+            Destroy(gameObject);
+        }
+    }
 }
+

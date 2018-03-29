@@ -15,8 +15,14 @@ public class laserScript : MonoBehaviour
     private float laserToggleTime = 0.15f;
     private bool canShoot = false;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip onEnemyLockClip;
+
     void Start()
     {
+        audioSource = this.transform.root.GetComponent<AudioSource>();
+
         laserRend = GetComponent<LineRenderer>();
         laserRend.enabled = false;
     }

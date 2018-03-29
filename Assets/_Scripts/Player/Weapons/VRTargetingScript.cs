@@ -7,33 +7,8 @@ using UnityEngine;
 
 public class VRTargetingScript : MonoBehaviour
 {
-
-   // [SerializeField] public Material mat1;
-   // [SerializeField] public Material mat2;
-
     public static Vector3 hitPos;
     public static bool canFire = false;
-
-    /*public bool canShoot {
-		get{ return canShoot;}
-		set{ canShoot = canFire;}
-	}*/
-
-    void Start()
-    {
-        //GetComponent<Renderer>().material = mat1;
-    }
-
-    public void Targeting()
-    {
-        //GetComponent<Renderer>().material = mat2;
-
-    }
-
-    public void notTargeting()
-    {
-        //GetComponent<Renderer>().material = mat1;
-    }
 
     public void Fire()
     {

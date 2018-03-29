@@ -152,12 +152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b5b7bb3e185df418c836a97082c24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMult: 0
+  speedMult: 1
   warpSpeed: 5000
   zLocate: 0
   health: 100
   shipTarget: {fileID: 1401770759494214, guid: 0f0062c67658b9a41a78a8e2fb1b1a79, type: 2}
   target: {fileID: 4603995684702168}
+  onHitClip: {fileID: 8300000, guid: 78aeb9116241fce46a7d04fc365aa33a, type: 3}
+  onDestroyClip: {fileID: 8300000, guid: e169c67929b5edf4ea8385382ee44415, type: 3}
+  onPlayerHitClip: {fileID: 8300000, guid: 74cbfba085266394fab3dfc8421ee914, type: 3}
 --- !u!114 &114327637215075712
 MonoBehaviour:
   m_ObjectHideFlags: 1

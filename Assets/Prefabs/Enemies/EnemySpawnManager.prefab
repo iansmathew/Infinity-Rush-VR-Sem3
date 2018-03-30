@@ -53,7 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTime: 1
   newSpawnTime: 0
-  asteroid: {fileID: 1145997340793676, guid: 43f17e99d54aaac42b136d2e869fc378, type: 2}
+  asteroid: {fileID: 1940910605636994, guid: 676a04cb32ef98f4da1f9dc9d7814ea0, type: 2}
   enemyShip: {fileID: 1145997340793676, guid: 43f17e99d54aaac42b136d2e869fc378, type: 2}
   enemyTarget: {fileID: 1401770759494214, guid: 0f0062c67658b9a41a78a8e2fb1b1a79,
     type: 2}
+  spawnLoc: {x: 0, y: 0, z: 0}

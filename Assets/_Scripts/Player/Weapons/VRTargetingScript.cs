@@ -22,6 +22,7 @@ public class VRTargetingScript : MonoBehaviour
         }
         else if (objectHit.tag == "Asteroid")
         {
+            objectHit.GetComponent<AsteroidMove>().TakeHit(50);
             //TODO: Call asteroid hit
         }
     }

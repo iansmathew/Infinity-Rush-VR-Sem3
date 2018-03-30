@@ -6,10 +6,10 @@ public class EnemySpawn : MonoBehaviour {
 
     public float spawnTime = 5.0f;
     public float newSpawnTime;
-    int spawnCount = 0;
-    int speedMult = 0;
+    int spawnCount, speedMult, currentLoc, prevLoc, asteroidSpawn;
     public GameObject asteroid, enemyShip,enemyTarget;
     private Random rnd;
+    public Vector3 spawnLoc;
 	// Use this for initialization
 	void Start () {
         Instantiate(enemyTarget, new Vector3(0.0f, 0.0f, -20.0f),Quaternion.identity);
@@ -30,15 +30,53 @@ public class EnemySpawn : MonoBehaviour {
 
     void spawnEnemy()
     {
-        int j = Mathf.RoundToInt(Random.value * 2);
-        GameObject spawned;
+        
+        for(int j = 0; j < 10; j++)
+        {
+            currentLoc = Mathf.RoundToInt(Random.value * 3);
+            if (currentLoc != prevLoc)
+                break;
+        }
 
-        if (j == 1)
-            spawned = asteroid;
+        prevLoc = currentLoc;
+
+        if (currentLoc == 0)
+            spawnLoc = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(3.0f, 10.0f), 1050);
+        else if (currentLoc == 1)
+            spawnLoc = new Vector3(Random.Range(-10.0f, -3.0f), Random.Range(2.0f, 10.0f), 1050);
         else
-            spawned = enemyShip;
+            spawnLoc = new Vector3(Random.Range(3.0f, 10.0f), Random.Range(2.0f, 10.0f), 1050);
+        //Debug.Log("Speed: "+speedMult);
 
-        Instantiate(spawned);
-        spawned.GetComponent<EnemyMove>().speedMult = speedMult;
+        Instantiate(enemyShip, spawnLoc, Quaternion.identity);
+
+        enemyShip.GetComponent<EnemyMove>().speedMult = speedMult;
+
+        if (asteroidSpawn > Random.Range(0,6))
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                currentLoc = Mathf.RoundToInt(Random.value * 3);
+                if (currentLoc != prevLoc)
+                    break;
+            }
+
+            prevLoc = currentLoc;
+
+            if (currentLoc == 0)
+                spawnLoc = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(3.0f, 10.0f), 100);
+            else if (currentLoc == 1)
+                spawnLoc = new Vector3(Random.Range(-10.0f, -3.0f), Random.Range(2.0f, 10.0f), 100);
+            else
+                spawnLoc = new Vector3(Random.Range(3.0f, 10.0f), Random.Range(2.0f, 10.0f), 100);
+
+            Instantiate(asteroid, spawnLoc, Quaternion.identity);
+            asteroidSpawn = 0;
+        }
+
+        else
+            asteroidSpawn++;
+
+      //  Instantiate(asteroid);
     }
 }

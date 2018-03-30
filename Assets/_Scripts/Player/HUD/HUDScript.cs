@@ -46,4 +46,9 @@ public class HUDScript : MonoBehaviour {
     {
         playerFuelScript.DamagePlayer(dmgAmount);
     }
+
+    public void AddPlayerFuel(float amount)
+    {
+        playerFuelScript.AddFuel(amount);
+    }
 }

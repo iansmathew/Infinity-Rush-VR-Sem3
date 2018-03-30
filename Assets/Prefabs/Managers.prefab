@@ -251,3 +251,4 @@ MonoBehaviour:
   enemyShip: {fileID: 1145997340793676, guid: 43f17e99d54aaac42b136d2e869fc378, type: 2}
   enemyTarget: {fileID: 1401770759494214, guid: 0f0062c67658b9a41a78a8e2fb1b1a79,
     type: 2}
+  spawnLoc: {x: 0, y: 0, z: 0}

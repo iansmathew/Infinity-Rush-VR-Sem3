@@ -69,6 +69,15 @@ public class PlayerFuelScript : MonoBehaviour {
         currFuel -= dmgAmt;
         StartCoroutine(ShowDangerText());
     }
+
+    public void AddFuel(float amt)
+    {
+        if (currFuel + amt > 100)
+            currFuel = 100;
+        else 
+            currFuel += amt;
+    }
+
     public void AddScore(int _score)
     {
         currScore += _score;

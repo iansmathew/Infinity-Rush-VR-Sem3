@@ -8,8 +8,6 @@ public class EnemyMove : MonoBehaviour {
     public int warpSpeed = 50;
     public float zLocate;
     public int health = 100;
-    public GameObject shipTarget;
-    public Transform target;
 
     [Header("Audio Components")]
     [SerializeField]
@@ -26,16 +24,6 @@ public class EnemyMove : MonoBehaviour {
 
         audioSource = GameObject.Find("EnemySpawnManager").GetComponent<AudioSource>();
 
-        int i = Mathf.RoundToInt(Random.value * 3);
-
-        if (i == 0)
-            transform.position = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(3.0f, 10.0f), 1050);
-        else if (i == 1)
-            transform.position = new Vector3(Random.Range(-10.0f, -3.0f), Random.Range(2.0f, 10.0f), 1050);
-        else
-            transform.position = new Vector3(Random.Range(3.0f, 10.0f), Random.Range(2.0f, 10.0f), 1050);
-        //Debug.Log("Speed: "+speedMult);
-
         Quaternion.Euler(0,-90,0);
     }
 	
@@ -49,7 +37,7 @@ public class EnemyMove : MonoBehaviour {
             distShift = 0.1f;
         if (transform.position.z <= 100)
             warpSpeed = 1;
-        transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z - (distShift));
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - (distShift));
         if (transform.position.z <= -10)
         {
             //Play player hit sound

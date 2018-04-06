@@ -28,4 +28,10 @@ public class GameManagerScript : MonoBehaviour {
         enemyManager.GetComponent<EnemySpawn>().enabled = true;
         player.GetComponent<PlayerFuelScript>().enabled = true;
     }
+
+    public void StopGame()
+    {
+        enemyManager.GetComponent<EnemySpawn>().enabled = false;
+        player.GetComponent<PlayerFuelScript>().enabled = false;
+    }
 }

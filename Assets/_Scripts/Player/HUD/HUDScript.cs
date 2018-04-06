@@ -8,6 +8,7 @@ public class HUDScript : MonoBehaviour {
     [Header("HUD Image Elements")]
     [SerializeField]
     private GameObject conditionPanel;
+    [SerializeField] private GameObject menuPanel;
 
     //Player Fuel Script
     PlayerFuelScript playerFuelScript;
@@ -51,4 +52,19 @@ public class HUDScript : MonoBehaviour {
     {
         playerFuelScript.AddFuel(amount);
     }
+
+    public void QuitButton()
+    {
+        playerFuelScript.AddFuel(100);
+        conditionPanel.SetActive(false);
+        menuPanel.SetActive(true);
+        GameManagerScript.Instance.StopGame();
+    }
+
+    public void RestartButton()
+    {
+        conditionPanel.SetActive(false);
+        playerFuelScript.AddFuel(100);
+    }
+
 }

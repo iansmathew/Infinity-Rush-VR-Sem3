@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class MenuControllerScript : MonoBehaviour{
@@ -16,6 +17,7 @@ public class MenuControllerScript : MonoBehaviour{
     [SerializeField]
     private AudioClip playButtonSelect;
 
+    public Animator PlayButtonAnim;
 
     void Start()
     {
@@ -32,15 +34,24 @@ public class MenuControllerScript : MonoBehaviour{
         audioSource.clip = playButtonSelect;
         audioSource.Play();
 
+        PlayButtonAnim = GetComponent<Animator>();
+        PlayButtonAnim.SetBool("PlayClick", true);
+
+        Invoke("StartGame", 2);
+        
+    }
+
+    public void StartGame()
+    {
         GameManagerScript.Instance.StartGame();
         menuPanel.gameObject.SetActive(false);
+        PlayButtonAnim.SetBool("PlayClick", false);
     }
 
     public void InstrucButton()
     {
         menuPanel.gameObject.SetActive(false);
         instrucPanel.gameObject.SetActive(true);
-
     }
 
     public void QuitButton()
